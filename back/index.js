@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
 const router=require("./routes/userroutes.js")
-
+const userouter=require("./routes/authroutes.js")
 mongoose.connect(process.env.MONGO).then(() => {
 
     
@@ -19,7 +19,7 @@ app.use(cors());
 
 app.use("/api/user",router)
 
-
+app.use("/api/auth",userouter)
 app.listen(3001, () => {
     console.log("server is running");
     
