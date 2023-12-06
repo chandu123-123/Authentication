@@ -19,8 +19,18 @@ app.use(cors());
 
 app.use("/api/user",router)
 
-app.use("/api/auth",userouter)
+app.use("/api",userouter)
 app.listen(3001, () => {
     console.log("server is running");
     
 });
+app.use((err,req,res,next)=>{
+   const statuscode=err.statuscode||500
+   const message=err.message||'internal server problem'
+   return res.status(statuscode).json({
+    success:false,  
+    message,
+      statuscode
+   })
+
+})
