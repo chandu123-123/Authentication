@@ -5,6 +5,7 @@ import Profile from "./pages/Profile"
 import Signup from "./pages/Signup"
 import Signin from "./pages/Signin"
 import Header from "./components/Header"
+import Error from "./Error"
 export default function App() {
   return (
     <BrowserRouter>
@@ -16,6 +17,7 @@ export default function App() {
             <Route path="profile" element={<Profile/>}></Route>
             <Route path="/signup" element={<Signup/>}></Route>
             <Route path="/signin" element={<Signin/>}></Route>
+            <Route path="*" element={<Error/>}> </Route>
     </Routes>
     </BrowserRouter>  
   )

@@ -54,7 +54,10 @@ const signup = async (req, res,next) => {
     console.log(token);
   const {password:hashedpassword,...rest}=await validuser._doc
 rest.success=true
-    res.cookie('jwt', token, { httpOnly: true /* other options like domain, secure, etc. can be added */ }).status(200).json(rest);
+    res.cookie('jwt', token, {httpOnly: true,
+        expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+        secure: true, // Set 'secure' in production
+        sameSite: 'strict',}).status(200).json(rest);
     
 
     } catch (error) {

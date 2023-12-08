@@ -1,21 +1,25 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import { signinstart,signinfailure,signinsuccess } from "../redux/user/userslice";
+import { useDispatch, useSelector } from "react-redux";
 export default function Signin() {
-  const [loading,setloading]=useState(false)
-  const [error,seterror]=useState(false)
+   
+
   const navigate=useNavigate()
+  const dispatch=useDispatch()
   const [form,setform]=useState({})
+  const {loading,error}=useSelector((state)=>state.user)
   const change=(e)=>{
     setform({...form,[e.target.id]:e.target.value}) 
   }
   const handlesubmit= async (e)=>{
+ 
     e.preventDefault();
     try{
-    setloading(true)
-    console.log(form)
-  
-    console.log("hello")
+   dispatch(signinstart())
+ console.log(error,'jajf')
+    
+
     const res = await fetch("http://localhost:3001/api/auth/signin", {
       method: 'POST', // Corrected: 'post' -> 'POST'
       headers:{
@@ -23,18 +27,17 @@ export default function Signin() {
       },
       body: JSON.stringify(form) // Convert form object to JSON string
     });
+    console.log(loading)
     const data= await res.json()
-    console.log(data)
+console.log(data)
     if(data.success==false){
-      
-      seterror(true)
-      setloading(false)
+    dispatch(signinfailure(data.message))
     }
     if(data.success){
   navigate("/")}
      }
     catch(err){
-      seterror(true)
+      dispatch(signinfailure(error))
     }
   }
    
@@ -51,7 +54,7 @@ export default function Signin() {
         <h1>{"Don't Have an account ? "}</h1>     
           <Link to="/signin" className="text-blue-400">Sign-up</Link>
           </div>
-        <p className="text-red-400 ml-3 flex ">{error&& 'something problem'}</p>
+        <p className="text-red-400 ml-3 flex ">{error ?  error: ''}</p>
     </div>
   )
 }
