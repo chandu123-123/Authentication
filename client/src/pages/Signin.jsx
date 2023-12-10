@@ -1,14 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signinstart,signinfailure,signinsuccess } from "../redux/user/userslice";
 import { useDispatch, useSelector } from "react-redux";
+import Oauth from "../components/Oauth";
 export default function Signin() {
    
 
   const navigate=useNavigate()
   const dispatch=useDispatch()
   const [form,setform]=useState({})
-  const {loading,error}=useSelector((state)=>state.user)
+  const {loading,error,currentuser}=useSelector((state)=>state.user)
+  useEffect(() => {
+    // Check if currentuser has changed and do something
+    console.log("Current User changed:", currentuser);
+    localStorage.setItem("user",JSON.stringify(currentuser))
+    console.log(localStorage.getItem("user"))
+  }, [currentuser]);
   const change=(e)=>{
     setform({...form,[e.target.id]:e.target.value}) 
   }
@@ -34,6 +41,9 @@ console.log(data)
     dispatch(signinfailure(data.message))
     }
     if(data.success){
+      dispatch(signinsuccess(data))
+      console.log(data)
+      console.log(currentuser,"sfskdf")
   navigate("/")}
      }
     catch(err){
@@ -49,6 +59,7 @@ console.log(data)
         <input className="text-center p-3 bg-slate-100" type="email" placeholder="Enter your Email" id="email" onChange={change}/>
         <input className="text-center p-3 bg-slate-100" type="password" placeholder="Password" id="password" onChange={change}/>
         <button  className="text-center text-white p-3 font-thin rounded-lg bg-blue-700" >{loading?<h1>Loading</h1>:<h1>SIGN IN</h1>}</button>
+        <Oauth></Oauth>
        </form>
        <div className="p-3 flex gap-3" >
         <h1>{"Don't Have an account ? "}</h1>     

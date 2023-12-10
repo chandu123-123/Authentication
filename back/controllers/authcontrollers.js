@@ -51,7 +51,7 @@ const signup = async (req, res,next) => {
  
     // Encoding the token
     const token = jwt.sign(payload, secretKey);
-    console.log(token);
+
   const {password:hashedpassword,...rest}=await validuser._doc
 rest.success=true
     res.cookie('jwt', token, {httpOnly: true,
