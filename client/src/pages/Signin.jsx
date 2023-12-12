@@ -63,7 +63,7 @@ console.log(data)
        </form>
        <div className="p-3 flex gap-3" >
         <h1>{"Don't Have an account ? "}</h1>     
-          <Link to="/signin" className="text-blue-400">Sign-up</Link>
+          <Link to="/signup" className="text-blue-400">Sign-up</Link>
           </div>
         <p className="text-red-400 ml-3 flex ">{error ?  error: ''}</p>
     </div>

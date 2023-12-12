@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Oauth from "../components/Oauth";
 
+
 export default function Signup() {
   const [loading,setloading]=useState(false)
   const [error,seterror]=useState(false)
@@ -41,6 +42,7 @@ navigate("/signin")}
    
   return (
     <div className="text-center flex flex-col max-w-lg mx-auto p-8">
+      
        <h1 className="text-[40px] font-bold pb-6">Sign Up</h1>
        <form onSubmit={handlesubmit} className="flex flex-col text-center gap-5 ">
         <input className="text-center p-3 bg-slate-100" type="text" placeholder="username" id="username" onChange={change}/>
