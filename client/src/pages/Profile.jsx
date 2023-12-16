@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import {app} from '../firebase';
 import {getDownloadURL, getStorage, ref, uploadBytesResumable} from 'firebase/storage'
-import { signinsuccess,signinfailure,signinstart } from "../redux/user/userslice";
+import { signinsuccess,signinfailure } from "../redux/user/userslice";
 import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
@@ -72,7 +72,7 @@ setimageerror(false)
 
 const updating= async ()=>{
   console.log(formdata)
-  const res = await fetch(`http://localhost:3001/api/auth/updating/${currentuser._id}`, {
+  const res = await fetch(`https://back-e54v.onrender.com/api/auth/updating/${currentuser._id}`, {
     method: 'POST', // Corrected: 'post' -> 'POST'
     headers:{
       'Content-Type': 'application/json' ,

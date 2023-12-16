@@ -20,7 +20,7 @@ const {error,loading}=useSelector(state=>state.user)
 
   
     console.log("hello")
-    const res = await fetch("http://localhost:3001/api/auth/signup", {
+    const res = await fetch("https://back-e54v.onrender.com/api/auth/signup", {
       method: 'POST', // Corrected: 'post' -> 'POST'
       headers:{
         'Content-Type': 'application/json' ,
