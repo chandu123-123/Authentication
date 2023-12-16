@@ -94,7 +94,7 @@ const updating= async ()=>{
 
 const deleting=async ()=>{
   
-  const res = await fetch("http://localhost:3001/api/auth/deleting", {
+  const res = await fetch("https://back-e54v.onrender.com/api/auth/deleting", {
     method: 'POST', // Corrected: 'post' -> 'POST'
     headers:{
       'Content-Type': 'application/json' ,
