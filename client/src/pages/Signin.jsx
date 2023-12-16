@@ -28,7 +28,7 @@ export default function Signin() {
  console.log(error,'jajf')
     
 
-    const res = await fetch("http://localhost:3001/api/auth/signin", {
+    const res = await fetch("https://back-e54v.onrender.com/api/auth/signin", {
       method: 'POST', // Corrected: 'post' -> 'POST'
       headers:{
         'Content-Type': 'application/json' ,
