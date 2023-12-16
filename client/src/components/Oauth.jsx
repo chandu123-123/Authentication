@@ -14,7 +14,7 @@ const {currentuser}=useSelector((state)=>state.user)
         const result=await signInWithPopup(auth,provider)
        console.log(result)    
        console.log("success")
-    const res = await fetch("http://localhost:3001/api/auth/google", {
+    const res = await fetch("https://back-e54v.onrender.com/api/auth/google", {
       method: 'POST', // Corrected: 'post' -> 'POST'
       headers:{
         'Content-Type': 'application/json' ,
