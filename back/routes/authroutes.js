@@ -1,9 +1,12 @@
 const express =require("express")
 const router=express.Router()
 const { signup, signin ,google} = require("../controllers/authcontrollers.js");
-
+const {deleting}=require("../controllers/usercontrollers.js");
+const {updating}=require("../controllers/usercontrollers.js")
 router.post("/signup",signup)
 
 router.post("/signin",signin)
 router.post("/google",google)
+router.post("/deleting",deleting)
+router.post("/updating/:id",updating)
 module.exports=router;

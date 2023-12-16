@@ -21,7 +21,7 @@ app.use(cors());
 app.use(cookieparser())
 app.use("/api/user",router)
 
-app.use("/api/auth",userouter)
+app.use("/api/auth/",userouter)
 app.listen(3001, () => {
     console.log("server is running");
     

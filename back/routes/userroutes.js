@@ -1,6 +1,6 @@
 const express =require("express")
 const router=express.Router()
-const { test } = require("../controllers/usercontrollers.js");
+const { test,deleting } = require("../controllers/usercontrollers.js");
 
 router.get("/",test)
 

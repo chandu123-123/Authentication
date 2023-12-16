@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { signinstart,signinfailure,signinsuccess } from "../redux/user/userslice";
 import { useDispatch, useSelector } from "react-redux";
 import Oauth from "../components/Oauth";
+
 export default function Signin() {
    
 
@@ -13,8 +14,8 @@ export default function Signin() {
   useEffect(() => {
     // Check if currentuser has changed and do something
     console.log("Current User changed:", currentuser);
-    localStorage.setItem("user",JSON.stringify(currentuser))
-    console.log(localStorage.getItem("user"))
+
+    
   }, [currentuser]);
   const change=(e)=>{
     setform({...form,[e.target.id]:e.target.value}) 

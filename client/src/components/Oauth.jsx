@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { app } from '../firebase';
 import {GoogleAuthProvider,signInWithPopup,getAuth} from 'firebase/auth'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { signinsuccess } from '../redux/user/userslice';
 export default function Oauth() {
-
+const {currentuser}=useSelector((state)=>state.user)
   const dispatch=useDispatch()
   const navigate=useNavigate()
     const submitted=async ()=>{
@@ -30,7 +30,7 @@ export default function Oauth() {
       console.log("success")
       console.log(data)
       dispatch(signinsuccess(data))
-      localStorage.setItem("user",JSON.stringify(data))
+   console.log(currentuser)
 console.log('check it')
       navigate("/")
     }

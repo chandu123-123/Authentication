@@ -2,6 +2,7 @@ const { errorhandler } = require("../error.js");
 const jwt = require('jsonwebtoken');
 const user=require("../models/usermodel.js")
 const bcrypt=require("bcryptjs")
+const cookie=require('js-cookie')
 const { v4: uuidv4 } = require('uuid');
 const signup = async (req, res,next) => {
     const {username,email,password}=req.body;
@@ -34,11 +35,14 @@ const signup = async (req, res,next) => {
        if(!validuser) return next(errorhandler(404,"invalid user"))
        if(typeof password==='string'){
         validpass=await bcrypt.compareSync(password,validuser.password)
+        console.log(password)
+        console.log(validuser.password)
        }
        else{
+
         return next(errorhandler(404,"enter credentials"))
        }
-       
+  
        if(!validpass) return next(errorhandler(401,"wrong credentials"))
    
        const payload = {
@@ -55,10 +59,11 @@ const signup = async (req, res,next) => {
 
   const {password:hashedpassword,...rest}=await validuser._doc
 rest.success=true
-    res.cookie('jwt', token, {httpOnly: true,
+
+    res.cookie('access_token', token, {httpOnly: true,
         expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
-        secure: true, // Set 'secure' in production
-        sameSite: 'strict',}).status(200).json(rest);
+     
+    }).status(200).json(rest);
     
 
     } catch (error) {
@@ -90,7 +95,7 @@ if(validuser){
  
      const {password:hashedpassword,...rest}=await validuser._doc
      rest.success=true
-     res.cookie('jwt', token, {httpOnly: true,
+     res.cookie('access_token', token, {httpOnly: true,
          expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
          secure: true, // Set 'secure' in production
          sameSite: 'strict',}).status(200).json(rest);
