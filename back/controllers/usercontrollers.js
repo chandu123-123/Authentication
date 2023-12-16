@@ -19,15 +19,16 @@ const updating = async (req, res) => {
         console.log("updating");
       console.log(req.params.id)
       console.log(req.body.formdata)
-      const password=await bcrypt.hashSync(req.body.formdata.password,10)
-        const updatedUser = await user.findByIdAndUpdate(
+      if(req.body.formdata.password){
+      req.body.formdata.password=await bcrypt.hashSync(req.body.formdata.password,10)
+      }const updatedUser = await user.findByIdAndUpdate(
             req.params.id,
             
             {
                 $set: {
                     username: req.body.formdata.username,
                     email: req.body.formdata.email,
-                    password: password,
+                    password: req.body.formdata.password,
                     photo: req.body.formdata.photo,
                 },
             },

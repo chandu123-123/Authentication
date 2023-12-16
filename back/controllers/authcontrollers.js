@@ -2,7 +2,7 @@ const { errorhandler } = require("../error.js");
 const jwt = require('jsonwebtoken');
 const user=require("../models/usermodel.js")
 const bcrypt=require("bcryptjs")
-const cookie=require('js-cookie')
+
 const { v4: uuidv4 } = require('uuid');
 const signup = async (req, res,next) => {
     const {username,email,password}=req.body;
