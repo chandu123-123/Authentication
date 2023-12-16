@@ -20,7 +20,9 @@ app.use(express.json());
 app.use(cors());
 app.use(cookieparser())
 app.use("/api/user",router)
-
+app.get("/",(req,res)=>{
+    res.send("hello world")
+})
 app.use("/api/auth/",userouter)
 app.listen(3001, () => {
     console.log("server is running");
